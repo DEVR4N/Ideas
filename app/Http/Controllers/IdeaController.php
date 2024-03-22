@@ -29,9 +29,9 @@ class IdeaController extends Controller
 
     public function edit(Idea $idea)
     {
-        $editting = true;
+        $editing = true;
 
-        return view('ideas.edit',compact('idea','editting'));
+        return view('ideas.edit',compact('idea','editing'));
     }
 
     public function destroy(Idea $idea)
