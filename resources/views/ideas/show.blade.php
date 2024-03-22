@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('content')
-<div class="row">
+    <div class="row">
         <div class="col-3">
             <div class="card overflow-hidden">
                 <div class="card-body pt-3">
@@ -38,19 +38,13 @@
         </div>
         <div class="col-6">
             @include('shared.success-message')
-            @include('shared.submit-idea')
+
+            <div class="mt-3">
+                @include('ideas.show')
+            </div>
 
             <hr>
-            @foreach($ideas as $idea)
-            <div class="mt-3">
-                @include('shared.idea-card')
-            </div>
-            @endforeach
 
-            {{-- Page pagination  --}}
-            <div class="mt-3">
-                {{ $ideas->links() }}
-            </div>
         </div>
         <div class="col-3">
             <div class="card">

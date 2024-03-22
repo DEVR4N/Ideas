@@ -20,4 +20,25 @@ class IdeaController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
     }
+
+    public function show(Idea $idea)
+    {
+
+        return view('ideas.show', [ 'idea' => $idea, ]);
+    }
+
+    public function edit(Idea $idea)
+    {
+        $editting = true;
+
+        return view('ideas.edit',compact('idea','editting'));
+    }
+
+    public function destroy(Idea $idea)
+    {
+        $idea->delete();
+//        $idea = Idea::where('id', $id)->firstOrFail()->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
+    }
 }
