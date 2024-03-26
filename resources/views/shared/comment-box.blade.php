@@ -13,7 +13,7 @@
         @foreach($idea->comments as $comment)
     <div class="d-flex align-items-start">
         <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-             src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi"
+             src="{{$comment->user->getImageUrl()}}"
              alt="Luigi Avatar">
         <div class="w-100">
             <input type="hidden" name="idea_id" value="{{ $idea->id }}">
