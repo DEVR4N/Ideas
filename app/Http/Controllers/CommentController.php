@@ -12,7 +12,7 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->idea_id = $idea->id;
         $comment->user_id = auth()->id();
-        $comment->content = request('content');
+        $comment->content = request()->get('content');
         $comment->save();
 
         return redirect()->route('ideas.show',$idea->id)->with('success','Comment created successfully!');
