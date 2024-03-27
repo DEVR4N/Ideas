@@ -49,15 +49,33 @@ class User extends Authenticatable
     {
         return $this->hasMany(Idea::class)->latest();
     }
+
     public function comments()
     {
         return $this->hasMany(Comment::class)->latest();
     }
 
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follewer_user',
+            'user_id', 'follower_id')->withTimestamps();
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follewer_user',
+            'follower_id', 'user_id')->withTimestamps();
+    }
+
+    public function follows(User $user)
+    {
+        return $this->following()->where('user_id', $user->id)->exists();
+    }
+
     public function getImageUrl()
     {
         if ($this->image) {
-            return url('storage/'. $this->image);
+            return url('storage/' . $this->image);
         }
 
         return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={$this->name}";
