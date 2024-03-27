@@ -5,7 +5,7 @@
             @method('PUT')
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img style="width:150px" class="me-3 avatar-sm rounded-circle"
+                <img style="width:50px" class="me-3 avatar-sm rounded-circle"
                      src="{{$user->getImageUrl()}}" alt="Mario Avatar">
                 <div>
                     <input name="name" type="text" value="{{$user->name}}" class="form-control">
