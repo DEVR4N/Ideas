@@ -5,10 +5,10 @@
             @include('shared.left-side-bar')
         </div>
         <div class="col-6">
-            {{-- Begin of Shared Views --}}
             @include('shared.success-message')
-            @include('shared.submit-idea')
-
+            <div class="mt-3">
+                @include('shared.user-edit-card')
+            </div>
             <hr>
             @forelse($ideas as $idea)
                 <div class="mt-3">
@@ -19,13 +19,7 @@
                     No results found.
                 </div>
             @endforelse
-
-            {{-- Page pagination  --}}
-            <div class="mt-3">
-                {{ $ideas->withQueryString()->links() }}
-            </div>
         </div>
-        {{-- End of Shared Views --}}
         <div class="col-3">
             @include('shared.search-bar')
             @include('shared.follow-box')

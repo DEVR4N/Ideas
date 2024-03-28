@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\IdeaController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -10,23 +12,38 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is w  here you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::post('/ideas', [IdeaController::class, 'store'])->name('ideas.create');
 
-Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('ideas.show');
+Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'show'])
+    ->middleware('auth');
 
-Route::get('/ideas/{idea}/edit', [IdeaController::class, 'edit'])->name('ideas.edit');
+Route::resource('ideas', IdeaController::class)->only(['show']);
 
-Route::put('/ideas/{idea}', [IdeaController::class, 'update'])->name('ideas.update');
+Route::resource('ideas.comments', CommentController::class)->only(['store'])
+    ->middleware('auth');
 
-Route::delete('/ideas/{idea}', [IdeaController::class, 'destroy'])->name('ideas.destroy');
+Route::resource('users', UserController::class)->only(['show','edit', 'update'])
+    ->middleware('auth');
 
-Route::get('/terms', function () { return view('terms'); });
+Route::get('profile', [UserController::class, 'profile'])->name('profile')
+    ->middleware('auth');
+
+Route::post('user/{user}/follow', [FollowerController::class, 'follow'])
+    ->name('user.follow')
+    ->middleware('auth');
+
+Route::post('user/{user}/unfollow', [FollowerController::class, 'unfollow'])
+    ->name('user.unfollow')
+    ->middleware('auth');
+
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
+
 
