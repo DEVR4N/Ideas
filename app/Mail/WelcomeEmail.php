@@ -5,6 +5,7 @@ namespace App\Mail;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -30,8 +31,8 @@ class WelcomeEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Thanks for joining us!' . config('app.name'),
-
+            //Email title
+            subject: 'Thanks for joining us! ' . config('app.name'),
         );
     }
 
@@ -55,6 +56,9 @@ class WelcomeEmail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            // Attach the ideas-logo.png file from the public disk
+            Attachment::fromStorageDisk('public', 'ideas-logo.png')
+        ];
     }
 }
