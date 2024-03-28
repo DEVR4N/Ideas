@@ -7,23 +7,23 @@
                      alt="{{ optional($idea->user)->name }}">
                 <div>
                     <h5 class="card-title mb-0">
-                        @if ($idea->user)
-                            <a href="{{ route('users.show', $idea->user->id) }}">
-                                {{ $idea->user->name }}
-                            </a>
-                        @endif
+                        <a href="{{ route('users.show', $idea->user->id) }}">
+                            {{ $idea->user->name }}
+                        </a>
                     </h5>
-
                 </div>
             </div>
-            <div>
-                <form method="post" action="{{ route('ideas.destroy',$idea->id) }}">
-                    @csrf
-                    @method('DELETE')
-                    <a href="{{ route('ideas.show',$idea->id) }}" class="btn btn-info btn-sm"> View </a>
-                    <a href="{{ route('ideas.edit',$idea->id) }}" class="btn btn-success btn-sm"> Update </a>
-                    <button class="btn btn-danger btn-sm"> X</button>
-                </form>
+            <div class="d-flex">
+                <a href="{{ route('ideas.show',$idea->id) }}" class="btn btn-info btn-sm"> View </a>
+                @auth()
+                    @can('idea.edit', $idea)
+                        <a href="{{ route('ideas.edit',$idea->id) }}" class="btn btn-success btn-sm"> Edit </a>
+                        <form method="POST" action="{{ route('ideas.destroy',$idea->id) }}">
+                            @csrf @method('DELETE')
+                            <button class="btn btn-danger btn-sm"> X</button>
+                        </form>
+                    @endcan
+                @endauth
             </div>
         </div>
 

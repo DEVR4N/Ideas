@@ -22,10 +22,10 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')
-    ->middleware(['auth', 'admin']);
+    ->middleware(['auth', 'can:admin']);
 
 Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'show'])
-    ->middleware('auth');
+    ->middleware('auth','can:admin');
 
 Route::resource('ideas', IdeaController::class)->only(['show']);
 

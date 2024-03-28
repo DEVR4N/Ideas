@@ -25,9 +25,11 @@ class IdeaController extends Controller
 
     public function edit(Idea $idea)
     {
-        if (auth()->id() !== $idea->user_id) { // If the authenticated user is not the owner of the idea
-            abort(404);
-        }
+//        if (auth()->id() !== $idea->user_id) { // If the authenticated user is not the owner of the idea
+//            abort(404);
+//        }
+
+        $this->authorize('idea.edit', $idea);
 
         $editing = true;
         return view('ideas.show',compact('idea','editing'));
@@ -45,10 +47,12 @@ class IdeaController extends Controller
 
     public function destroy(Idea $idea)
     {
-        if (auth()->id() !== $idea->user_id) { // If the authenticated user is not the owner of the idea
-            abort(404);
-//            return back()->with('error', 'You are not allowed to delete this idea!');
-        }
+//        if (auth()->id() !== $idea->user_id) { // If the authenticated user is not the owner of the idea
+//            abort(404);
+////            return back()->with('error', 'You are not allowed to delete this idea!');
+//        }
+
+        $this->authorize('idea.delete', $idea);
 
         $idea->delete();
         return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
