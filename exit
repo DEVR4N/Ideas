@@ -1,0 +1,134 @@
+[33mcommit 306190a7ec2999b3eb5d03ed88e07463f01b3095[m[33m ([m[1;36mHEAD -> [m[1;32m5-authorization-and-autheticantion[m[33m)[m
+Author: devr4n <secondply.2@gmail.com>
+Date:   Thu Mar 28 14:15:55 2024 +0200
+
+    #5 like button - eager loading - theme change - debugbar
+
+[33mcommit ddcf5b81979e635d580816b2a1458756bbd6f045[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: ed9b447 c7e6f2d
+Author: Devran <77250053+DEVR4N@users.noreply.github.com>
+Date:   Thu Mar 28 12:36:31 2024 +0300
+
+    Merge pull request #4 from DEVR4N/3-login-logout
+    
+    3 login logout
+
+[33mcommit c7e6f2d60e8eaef3f8cf3c11083a39b15d1f6318[m[33m ([m[1;31morigin/3-login-logout[m[33m, [m[1;32m3-login-logout[m[33m)[m
+Author: devr4n <secondply.2@gmail.com>
+Date:   Thu Mar 28 10:59:28 2024 +0200
+
+    #3 active links fix
+
+[33mcommit dabe6e74fd9006ced37d439cd63175fd55a7e178[m
+Author: devr4n <secondply.2@gmail.com>
+Date:   Thu Mar 28 10:22:29 2024 +0200
+
+    #3 mail sender fix
+
+[33mcommit 1efa97af94777291865565ff927df94897fba292[m
+Author: devr4n <devr4n@github.com>
+Date:   Wed Mar 27 12:44:52 2024 +0300
+
+    #3 mail testing
+
+[33mcommit 9a151eab6ce5c946035296f4e183ee9dfdfb1cd0[m
+Author: devr4n <devr4n@github.com>
+Date:   Wed Mar 27 12:00:38 2024 +0300
+
+    #3 follow-unfollow user
+
+[33mcommit 4bfa1cca958affe12079048178a05a9bf1c0403a[m
+Author: devr4n <devr4n@github.com>
+Date:   Wed Mar 27 10:35:12 2024 +0300
+
+    #3 image upload fix
+
+[33mcommit 6f2ed9116e6c2a1aa17ca21502a5a2163061c4ab[m
+Author: devr4n <devr4n@github.com>
+Date:   Tue Mar 26 18:01:25 2024 +0300
+
+    #3 user profile update operation
+
+[33mcommit 4d1f28abb4473a2c812a62adb3512dd7ad8d65e8[m
+Author: devr4n <devr4n@github.com>
+Date:   Tue Mar 26 16:05:26 2024 +0300
+
+    #3 user ideas and comments - search bar fixed
+
+[33mcommit 4850390560b786073584a2ae45fe9d172375233a[m
+Author: devr4n <devr4n@github.com>
+Date:   Tue Mar 26 14:09:52 2024 +0300
+
+    #3 refactor and fix comments - auth - route
+
+[33mcommit 8639147c1b0eb38685d85532842b911e4bafa534[m
+Author: devr4n <devr4n@github.com>
+Date:   Tue Mar 26 12:47:06 2024 +0300
+
+    #3 route group fix
+
+[33mcommit e62656658572d4a076611f29ef210280c30e86e7[m
+Author: devr4n <devr4n@github.com>
+Date:   Tue Mar 26 12:15:09 2024 +0300
+
+    #3 simple authorizations
+
+[33mcommit f0b6b196626529a491d92c7529ab05d21d9be16d[m
+Author: devr4n <devr4n@github.com>
+Date:   Tue Mar 26 11:36:39 2024 +0300
+
+    #3 login logout created
+
+[33mcommit c558ad46f46cc9b9a92b104e865af60b5caaa68c[m
+Author: devr4n <secondply.2@gmail.com>
+Date:   Sat Mar 23 12:19:05 2024 +0200
+
+    #3 register mvc
+
+[33mcommit ed9b44724ab3a4f9f3e8013ca4ec0ad27533014d[m[33m ([m[1;31morigin/1-project-beginning[m[33m, [m[1;32mmain[m[33m, [m[1;32m1-project-beginning[m[33m)[m
+Author: devr4n <secondply.2@gmail.com>
+Date:   Sat Mar 23 10:46:20 2024 +0200
+
+    #1 search fix
+
+[33mcommit a1dd9ec92ed20d7496b14178ee7345fbd6cec44a[m
+Author: devr4n <secondply.2@gmail.com>
+Date:   Sat Mar 23 10:31:50 2024 +0200
+
+    #1 crud fix vol 2
+
+[33mcommit a142c859218a113957d076afe71931679dd7daf0[m
+Author: devr4n <secondply.2@gmail.com>
+Date:   Sat Mar 23 10:30:20 2024 +0200
+
+    #1 crud fixed
+
+[33mcommit e3a663a2165c7917c19a30054e784b8190188263[m
+Author: devr4n <devr4n@github.com>
+Date:   Fri Mar 22 18:01:18 2024 +0300
+
+    #1 refactoring little bit
+
+[33mcommit 635cf1ce2aab270298a00c5922591e8d8db8d828[m
+Author: devr4n <devr4n@github.com>
+Date:   Fri Mar 22 15:53:58 2024 +0300
+
+    #1 crud operations
+
+[33mcommit 03744cac643f5ec4b373cbdcff876ef9c2dbea74[m
+Author: devr4n <devr4n@github.com>
+Date:   Fri Mar 22 13:08:17 2024 +0300
+
+    #1 mini form requirements fix
+
+[33mcommit e298807cbfaf05fcdcf8cb4e8ff12bd06bf91b06[m
+Author: devr4n <devr4n@github.com>
+Date:   Fri Mar 22 11:24:34 2024 +0300
+
+    #1 layout created
+
+[33mcommit d071976094f4d790ccd6247417553fb98d1a9780[m
+Author: devr4n <devr4n@github.com>
+Date:   Fri Mar 22 09:40:14 2024 +0300
+
+    ideas project
