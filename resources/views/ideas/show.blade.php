@@ -8,7 +8,7 @@
             @include('shared.success-message')
 
             <div class="mt-3">
-                @include('shared.idea-card')
+                @include('ideas.shared.idea-card')
             </div>
 
             <hr>
@@ -19,6 +19,5 @@
             @include('shared.follow-box')
         </div>
     </div>
-
 
 @endsection
