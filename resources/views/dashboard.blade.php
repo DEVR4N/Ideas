@@ -16,7 +16,7 @@
                 </div>
             @empty
                 <div class="alert alert-info">
-                    No results found.
+                    No ideas found.
                 </div>
             @endforelse
 

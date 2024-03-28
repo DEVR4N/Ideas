@@ -15,7 +15,7 @@
         @forelse($idea->comments as $comment)
             <div class="d-flex align-items-start">
                 <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-                     src="{{$comment->user->getImageUrl()}}"
+                     src="{{ $comment->user->getImageUrl() }}"
                      alt="Luigi Avatar">
                 <div class="w-100">
                     <input type="hidden" name="idea_id" value="{{ $idea->id }}">
@@ -24,11 +24,11 @@
                         <h6 class="">{{ $comment->user->name }}
                         </h6>
                         <small class="fs-6 fw-light text-muted">
-                            {{$comment->created_at}}
+                            {{ $comment->created_at->diffForHumans() }}
                         </small>
                     </div>
                     <p class="fs-6 mt-3 fw-light">
-                        {{$comment->content}}
+                        {{ $comment->content }}
                     </p>
                 </div>
             </div>
