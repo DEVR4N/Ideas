@@ -11,21 +11,28 @@ use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
+
+    //Useable for defining policies classes
+    protected $policies = [
+//        Idea::class => 'App\Policies\IdeaPolicy',
+    ];
+
+
     public function boot(): void
     {
         //Admin Role
-        Gate::define('admin', function (User $user) : bool {
-            return (bool) $user->is_admin;
+        Gate::define('admin', function (User $user): bool {
+            return (bool)$user->is_admin;
         });
 
-        //Permission to edit an idea
-        Gate::define('idea.edit', function (User $user, Idea $idea) : bool {
-            return ( (bool) $user->is_admin || $user->id === $idea->user_id );
-        });
-
-        //Permission to delete an idea
-        Gate::define('idea.delete', function (User $user, Idea $idea) : bool {
-            return ( (bool) $user->is_admin || $user->id === $idea->user_id);
-        });
+//        //Permission to edit an idea
+//        Gate::define('idea.edit', function (User $user, Idea $idea) : bool {
+//            return ( (bool) $user->is_admin || $user->id === $idea->user_id );
+//        });
+//
+//        //Permission to delete an idea
+//        Gate::define('idea.delete', function (User $user, Idea $idea) : bool {
+//            return ( (bool) $user->is_admin || $user->id === $idea->user_id);
+//        });
     }
 }

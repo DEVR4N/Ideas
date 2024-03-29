@@ -16,7 +16,7 @@
             <div class="d-flex">
                 <a href="{{ route('ideas.show',$idea->id) }}" class="btn btn-info btn-sm"> View </a>
                 @auth()
-                    @can('idea.edit', $idea)
+                    @can('update', $idea)
                         <a href="{{ route('ideas.edit',$idea->id) }}" class="btn btn-success btn-sm"> Edit </a>
                         <form method="POST" action="{{ route('ideas.destroy',$idea->id) }}">
                             @csrf @method('DELETE')

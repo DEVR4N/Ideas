@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,14 +21,19 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update',$user);
         $ideas = $user->ideas()->paginate(5);
 
         $editing = true;
         return view('users.edit',compact('user','editing','ideas'));
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function update(User $user)
     {
+        $this->authorize('update',$user);
         $validated = request()->validate([
             'name' => 'required|min:3|max:50',
             'bio' => 'nullable|min:3|max:100',

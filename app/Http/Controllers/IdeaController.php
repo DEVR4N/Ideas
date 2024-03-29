@@ -29,7 +29,7 @@ class IdeaController extends Controller
 //            abort(404);
 //        }
 
-        $this->authorize('idea.edit', $idea);
+        $this->authorize('update', $idea);
 
         $editing = true;
         return view('ideas.show',compact('idea','editing'));
@@ -37,6 +37,7 @@ class IdeaController extends Controller
 
     public function update(Idea $idea)
     {
+        $this->authorize('update', $idea);
         $validated = request()->validate([ 'content' => 'required|min:5|max:255', ]);
 
         $idea->update($validated);
@@ -52,7 +53,7 @@ class IdeaController extends Controller
 ////            return back()->with('error', 'You are not allowed to delete this idea!');
 //        }
 
-        $this->authorize('idea.delete', $idea);
+        $this->authorize('delete', $idea);
 
         $idea->delete();
         return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
