@@ -9,6 +9,9 @@ use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\IdeaController as AdminIdeaController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +29,6 @@ Route::get('lang/{lang}', function ($lang) {
 })->name('lang');
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
-Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')
-    ->middleware(['auth', 'can:admin']);
 
 Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'show'])
     ->middleware('auth','can:admin');
@@ -70,5 +70,14 @@ Route::get('/feed', FeedController::class)->name('feed')
 Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
+
+
+// Admin routes
+Route::middleware(['auth','can:admin'])->prefix('/admin')->as('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('users', AdminUserController::class)->only('index');
+    Route::resource('ideas', AdminIdeaController::class)->only('index');
+    Route::resource('comments', AdminCommentController::class)->only(['index','destroy']);
+});
 
 
