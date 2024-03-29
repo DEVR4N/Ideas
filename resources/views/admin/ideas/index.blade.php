@@ -11,8 +11,8 @@
             <table class="table table-stripped">
                 <thead>
                 <tr class="text-center">
-                    <th>Idea ID</th>
-                    <th>User ID</th>
+                    <th>ID</th>
+                    <th>User</th>
                     <th>Content</th>
                     <th>Created At</th>
                     <th>Action</th>
@@ -22,10 +22,14 @@
                 @foreach($ideas as $idea)
                     <tr class="text-center">
                         <td>{{$idea->id}}</td>
-                        <td>{{$idea->user_id}}</td>
+                        <td>
+                            <a href="{{route('users.show',$idea->user)}}">
+                                {{$idea->user->name}}
+                            </a>
+                        </td>
                         <td>{{$idea->content}}</td>
                         <td>{{$idea->created_at->toDateString()}}</td>
-                        <td>
+                        <td class="btn-group btn-group-sm " role="group" aria-label="Basic mixed styles example">
                             <a href="{{route('ideas.show',$idea)}}" class="btn btn-info btn-sm">Show</a>
                             <a href="{{route('ideas.edit',$idea)}}" class="btn btn-warning btn-sm">Edit</a>
                             <a href="#" class="btn btn-danger btn-sm">Delete</a>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\IdeaController as AdminIdeaController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +77,7 @@ Route::middleware(['auth','can:admin'])->prefix('/admin')->as('admin.')->group(f
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('users', AdminUserController::class)->only('index');
     Route::resource('ideas', AdminIdeaController::class)->only('index');
+    Route::resource('comments', AdminCommentController::class)->only(['index','destroy']);
 });
 
 
