@@ -23,7 +23,7 @@
                     @if(Auth::user()->is_admin)
                         <li class="nav-item">
                             <a class="{{ (Route::is('admin.dashboard')) ? 'active' : '' }} nav-link"
-                               href="{{route('dashboard')}}">Admin Dashboard</a>
+                               href="{{route('admin.dashboard')}}">Admin Dashboard</a>
                         </li>
                     @endif
                     <li class="nav-item">

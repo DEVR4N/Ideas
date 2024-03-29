@@ -74,7 +74,7 @@ Route::get('/terms', function () {
 
 // Admin routes
 Route::middleware(['auth','can:admin'])->prefix('/admin')->as('admin.')->group(function () {
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('users', AdminUserController::class)->only('index');
     Route::resource('ideas', AdminIdeaController::class)->only('index');
     Route::resource('comments', AdminCommentController::class)->only(['index','destroy']);

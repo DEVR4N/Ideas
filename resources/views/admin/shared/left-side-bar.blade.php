@@ -3,7 +3,7 @@
         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
             <li class="nav-item">
                 <a class="{{ (Route::is('admin.dashboard')) ? 'text-white bg-primary rounded' : ''}} nav-link"
-                   href="{{route('dashboard')}}">
+                   href="{{route('admin.dashboard')}}">
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
