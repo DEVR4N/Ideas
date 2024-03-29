@@ -13,7 +13,8 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->is($model);
+        // Admin and the user can update profiles
+        return  $user->is_admin || $user->is($model);
     }
 
 }
