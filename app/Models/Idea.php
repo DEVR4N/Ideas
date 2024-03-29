@@ -12,10 +12,12 @@ class Idea extends Model
     // Eager load the user and comments relationship.
     protected $with = ['user:id,name,image', 'comments.user:id,name,image'];
 
+    // Eager load the likes count.
+    protected $withCount = ['likes'];
+
     protected $fillable = [
         'user_id', // This is the user who created the idea
-        'content',
-        'likes',
+        'content', // The idea itself
     ];
 
     public function comments()
