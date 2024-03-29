@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\IdeaController as AdminIdeaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,9 +72,10 @@ Route::get('/terms', function () {
 
 
 // Admin routes
-Route::middleware(['auth','can:admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth','can:admin'])->prefix('/admin')->as('admin.')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users');
+    Route::resource('users', AdminUserController::class)->only('index');
+    Route::resource('ideas', AdminIdeaController::class)->only('index');
 });
 
 

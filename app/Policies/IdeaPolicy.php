@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\Response;
 class IdeaPolicy
 {
     /**
-     * Determine whether the user can update the model.
+     * Admins or the idea owner can update an idea.
      */
     public function update(User $user, Idea $idea): bool
     {
@@ -17,7 +17,7 @@ class IdeaPolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Admins or the idea owner can delete an idea.
      */
     public function delete(User $user, Idea $idea): bool
     {

@@ -1,40 +1,40 @@
 @extends('layout.app')
-@section('title', 'Users | Admin Panel')
+@section('title', 'Ideas | Admin Panel')
 @section('content')
     <div class="row">
         <div class="col-3">
             @include('admin.shared.left-side-bar')
         </div>
         <div class="col-9">
-            <h2>Users Dashboard</h2>
+            <h2>Ideas Dashboard</h2>
 
             <table class="table table-stripped">
                 <thead>
                 <tr class="text-center">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
+                    <th>Idea ID</th>
+                    <th>User ID</th>
+                    <th>Content</th>
                     <th>Created At</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($users as $user)
+                @foreach($ideas as $idea)
                     <tr class="text-center">
-                        <td>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->created_at->toDateString()}}</td>
+                        <td>{{$idea->id}}</td>
+                        <td>{{$idea->user_id}}</td>
+                        <td>{{$idea->content}}</td>
+                        <td>{{$idea->created_at->toDateString()}}</td>
                         <td>
-                            <a href="{{ route('users.show',$user) }}" class="btn btn-info btn-sm">Show</a>
-                            <a href="{{ route('users.edit',$user) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{route('ideas.show',$idea)}}" class="btn btn-info btn-sm">Show</a>
+                            <a href="{{route('ideas.edit',$idea)}}" class="btn btn-warning btn-sm">Edit</a>
                             <a href="#" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-            {{$users->links()}}
+            {{$ideas->links()}}
         </div>
     </div>
 @endsection
