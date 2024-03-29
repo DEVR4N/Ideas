@@ -2,28 +2,28 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img style="width:50px" class="me-2 avatar-sm rounded-circle"
+                <img style="width: 50px; height: 50px;" class="me-2 avatar-sm rounded-circle"
                      src="{{ optional($idea->user)->getImageUrl() }}"
                      alt="{{ optional($idea->user)->name }}">
                 <div>
                     <h5 class="card-title mb-0">
-                        @if ($idea->user)
-                            <a href="{{ route('users.show', $idea->user->id) }}">
-                                {{ $idea->user->name }}
-                            </a>
-                        @endif
+                        <a href="{{ route('users.show', $idea->user->id) }}">
+                            {{ $idea->user->name }}
+                        </a>
                     </h5>
-
                 </div>
             </div>
-            <div>
-                <form method="post" action="{{ route('ideas.destroy',$idea->id) }}">
-                    @csrf
-                    @method('DELETE')
-                    <a href="{{ route('ideas.show',$idea->id) }}" class="btn btn-info btn-sm"> View </a>
-                    <a href="{{ route('ideas.edit',$idea->id) }}" class="btn btn-success btn-sm"> Update </a>
-                    <button class="btn btn-danger btn-sm"> X</button>
-                </form>
+            <div class="d-flex">
+                <a href="{{ route('ideas.show',$idea->id) }}" class="btn btn-info btn-sm"> View </a>
+                @auth()
+                    @can('update', $idea)
+                        <a href="{{ route('ideas.edit',$idea->id) }}" class="btn btn-success btn-sm"> Edit </a>
+                        <form method="POST" action="{{ route('ideas.destroy',$idea->id) }}">
+                            @csrf @method('DELETE')
+                            <button class="btn btn-danger btn-sm"> X</button>
+                        </form>
+                    @endcan
+                @endauth
             </div>
         </div>
 

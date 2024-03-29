@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{config('app.name')}}</title>
+    <title>@yield('title') | {{config('app.name')}}</title>
 
 {{--    You can use any of the following themes from bootswatch.com--}}
     <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">

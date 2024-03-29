@@ -14,7 +14,7 @@
         <h6 class="mt-3">Comments</h6>
         @forelse($idea->comments as $comment)
             <div class="d-flex align-items-start">
-                <img style="width:35px" class="me-2 avatar-sm rounded-circle"
+                <img style="width: 35px; height: 35px;" class="me-2 avatar-sm rounded-circle"
                      src="{{ $comment->user->getImageUrl() }}"
                      alt="Luigi Avatar">
                 <div class="w-100">

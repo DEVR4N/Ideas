@@ -17,9 +17,14 @@ class FeedController extends Controller
 
         $ideas = Idea::whereIn('user_id',$followingIDs)->latest();
 
-        if (request()->has('search')) {
-            $ideas = $ideas->where('content', 'like', '%' . request()->get('search', '') . '%');
-        }
+        /**
+        * If the user is not an admin, only show their ideas.
+        * Coming from the Idea model.
+        */
+
+        if (request()->has('search'))
+            $ideas = $ideas->search(request('search',''));
+
 
         return view('dashboard', ['ideas' => $ideas->paginate(3)]);
     }
