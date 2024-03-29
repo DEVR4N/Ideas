@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateIdeaRequest;
+use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 
+
+/*
+ * Validation request classes are used to validate incoming requests before they reach the controller.
+ * They are used to validate the request data and return the validated data.
+ */
 class IdeaController extends Controller
 {
-    public function store()
+    public function store(CreateIdeaRequest $request)
     {
-        $validated = request()->validate(['content' => 'required|min:5|max:255',]);
+        $validated = $request->validated();
 
         $validated['user_id'] = auth()->id();
 
@@ -35,10 +42,10 @@ class IdeaController extends Controller
         return view('ideas.show',compact('idea','editing'));
     }
 
-    public function update(Idea $idea)
+    public function update(UpdateIdeaRequest $request,Idea $idea)
     {
         $this->authorize('update', $idea);
-        $validated = request()->validate([ 'content' => 'required|min:5|max:255', ]);
+        $validated = $request->validated();
 
         $idea->update($validated);
         $idea->save();

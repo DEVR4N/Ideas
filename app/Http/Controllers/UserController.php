@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
@@ -31,23 +32,18 @@ class UserController extends Controller
     /**
      * @throws AuthorizationException
      */
-    public function update(User $user)
+    public function update(UpdateUserRequest $request,User $user)
     {
         $this->authorize('update',$user);
-        $validated = request()->validate([
-            'name' => 'required|min:3|max:50',
-            'bio' => 'nullable|min:3|max:100',
-            'image' => 'image',
-        ]);
 
-        if(request()->has('image')){
-            $imagePath = request()->file('image')->store('profile','public');
+        $validated = $request->validated();
+
+        if($request->has('image')){
+            $imagePath = $request->file('image')->store('profile','public');
             $validated['image'] = $imagePath;
 
             Storage::disk('public')->delete($user->image ?? '');
         }
-
-
 
         $user->update($validated);
         return redirect()->route('profile');
