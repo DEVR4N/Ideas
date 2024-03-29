@@ -19,6 +19,12 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('lang/{lang}', function ($lang) {
+    app()->setLocale($lang);
+    session()->put('locale', $lang);
+    return redirect()->route('dashboard');
+})->name('lang');
+
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')
