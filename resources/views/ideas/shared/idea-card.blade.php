@@ -2,7 +2,7 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img style="width:50px" class="me-2 avatar-sm rounded-circle"
+                <img style="width: 50px; height: 50px;" class="me-2 avatar-sm rounded-circle"
                      src="{{ optional($idea->user)->getImageUrl() }}"
                      alt="{{ optional($idea->user)->name }}">
                 <div>
