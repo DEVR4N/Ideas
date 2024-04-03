@@ -6,7 +6,9 @@ use App\Http\Requests\CreateIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 
 /*
@@ -17,13 +19,18 @@ class IdeaController extends Controller
 {
     public function store(CreateIdeaRequest $request)
     {
-        $validated = $request->validated();
+        try {
+            $validated = $request->validated();
+            $validated['user_id2'] = auth()->id();
+            Idea::create($validated);
 
-        $validated['user_id'] = auth()->id();
+            return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
+        }
+        catch (Exception $e) {
+            Log::error('An error occurred while creating the idea! : ' . $e->getMessage());
+            return back()->withErrors(['error' => 'An error occurred while creating the idea!']);
 
-        Idea::create($validated);
-
-        return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
+        }
     }
 
     public function show(Idea $idea)
@@ -38,14 +45,16 @@ class IdeaController extends Controller
 //            abort(404);
 //        }
 
-        $this->authorize('update', $idea);
+            $this->authorize('update', $idea);
 
-        $editing = true;
-        return view('ideas.show',compact('idea','editing'));
+            $editing = true;
+            return view('ideas.show',compact('idea','editing'));
+
     }
 
     public function update(UpdateIdeaRequest $request,Idea $idea)
     {
+        try {
         $this->authorize('update', $idea);
         $validated = $request->validated();
 
@@ -53,18 +62,31 @@ class IdeaController extends Controller
         $idea->save();
 
         return redirect()->route('ideas.show', $idea->id)->with('success', 'Idea updated successfully!');
+        }
+        catch (Exception $e) {
+            Log::error('An error occurred while updating the idea! : ' . $e->getMessage());
+            return back()->withErrors(['error'=>'An error occurred while updating the idea!']);
+        }
     }
 
     public function destroy(Idea $idea)
     {
+        try {
+            $this->authorize('delete', $idea);
+
+            $idea->delete();
+            return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
+
 //        if (auth()->id() !== $idea->user_id) { // If the authenticated user is not the owner of the idea
 //            abort(404);
 ////            return back()->with('error', 'You are not allowed to delete this idea!');
 //        }
 
-        $this->authorize('delete', $idea);
+        }
+        catch (Exception $e) {
+            Log::error('An error occurred while deleting the idea! : ' . $e->getMessage());
+            return back()->error(['error'=>'An error occurred while deleting the idea!']);
+        }
 
-        $idea->delete();
-        return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
     }
 }

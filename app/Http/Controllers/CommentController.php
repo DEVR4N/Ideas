@@ -17,4 +17,21 @@ class CommentController extends Controller
 
         return redirect()->route('ideas.show',$idea->id)->with('success','Comment created successfully!');
     }
+
+
+    //code fix needed
+    public function edit(Comment $comment)
+    {
+        $this->authorize('update',$comment);
+        $editing = true;
+        return view('comments.edit',compact('comment','editing'));
+
+    }
+
+    //code fix needed
+    public function destroy(Comment $comment) {
+        $this->authorize('delete',$comment);
+        $comment->delete();
+        return back()->with('success','Comment deleted successfully!');
+    }
 }
