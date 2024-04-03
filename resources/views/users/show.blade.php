@@ -16,8 +16,8 @@
                     @include('ideas.shared.idea-card')
                 </div>
             @empty
-                <div class="alert alert-info">
-                    No results found.
+                <div class="alert alert-info shadow-sm p-3 mb-5 bg-body rounded">
+                    User has not posted any ideas yet.
                 </div>
             @endforelse
         </div>

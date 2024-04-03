@@ -25,7 +25,7 @@
         <div class="px-2 mt-4">
             <h5 class="fs-5"> Bio : </h5>
             <div class="mb-3">
-                {{ $user->bio }}
+                {{ $user->bio ?? 'No bio provided'}}
                 @error('bio')
                 <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
