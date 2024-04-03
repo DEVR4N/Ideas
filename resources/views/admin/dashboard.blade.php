@@ -12,7 +12,7 @@
                 <div class="col-sm-6 col-md-4">
                         @include('shared.widget', [
                             'icon' => 'fas fa-users',
-                            'color' => 'bg-primary',
+                            'color' => 'text-info',
                             'title' => 'Total Users',
                             'value' => $totalUsers
                         ])
@@ -22,7 +22,7 @@
                 <div class="col-sm-6 col-md-4">
                         @include('shared.widget', [
                             'icon' => 'fa fa-lightbulb',
-                            'color' => 'bg-primary',
+                            'color' => 'text-warning',
                             'title' => 'Total Ideas',
                             'value' => $totalIdeas
                         ])
@@ -32,7 +32,7 @@
                 <div class="col-sm-6 col-md-4">
                         @include('shared.widget', [
                             'icon' => 'fas fa-comments',
-                            'color' => 'bg-primary',
+                            'color' => 'text-success',
                             'title' => 'Total Comments',
                             'value' => $totalComments
                         ])
