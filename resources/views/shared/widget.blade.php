@@ -1,5 +1,5 @@
 <div class="card">
     <div class="card-body">
-        <p><span class="fas {{$icon ?? 'fas fa-user'}}"></span> {{$title ?? ''}} </p>
-        <h3 class="card-title text-center">{{$value ?? ''}}</h3>
+        <p class="fs-4 text-uppercase {{$color ?? ''}}"><span class="fas fa-6px {{$icon ?? 'fas fa-user'}} {{$color ?? ''}} "></span> {{$title ?? ''}} </p>
+        <h3 class="card-title text-center {{$color ?? ''}}">{{$value ?? ''}}</h3>
     </div>
