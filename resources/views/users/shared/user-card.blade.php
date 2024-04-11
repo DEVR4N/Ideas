@@ -11,7 +11,9 @@
 
             </div>
             @can('update', $user)
-                <a href="{{route('users.edit',$user->id)}}" class="btn btn-primary btn-sm ms-3"> Edit </a>
+                <a href="{{route('users.edit',$user->id)}}" class="btn btn-primary btn-sm ms-3">
+                    Edit <i class="fa-solid fa-pen "></i>
+                </a>
             @endcan
         </div>
 

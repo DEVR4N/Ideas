@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
-use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 
@@ -24,7 +22,8 @@ class IdeaController extends Controller
             $validated['user_id2'] = auth()->id();
             Idea::create($validated);
 
-            return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
+            return redirect()->route('dashboard')
+                ->with('success', 'Idea created successfully!');
         }
         catch (Exception $e) {
             Log::error('An error occurred while creating the idea! : ' . $e->getMessage());
@@ -61,7 +60,8 @@ class IdeaController extends Controller
         $idea->update($validated);
         $idea->save();
 
-        return redirect()->route('ideas.show', $idea->id)->with('success', 'Idea updated successfully!');
+        return redirect()->route('ideas.show', $idea->id)
+            ->with('success', 'Idea updated successfully!');
         }
         catch (Exception $e) {
             Log::error('An error occurred while updating the idea! : ' . $e->getMessage());
@@ -75,7 +75,8 @@ class IdeaController extends Controller
             $this->authorize('delete', $idea);
 
             $idea->delete();
-            return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
+            return redirect()->route('dashboard')
+                ->with('success', 'Idea deleted successfully!');
 
 //        if (auth()->id() !== $idea->user_id) { // If the authenticated user is not the owner of the idea
 //            abort(404);

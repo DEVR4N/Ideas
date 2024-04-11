@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Idea;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class IdeaLikeController extends Controller
@@ -20,7 +19,8 @@ class IdeaLikeController extends Controller
         }
         catch (Exception $e) {
             Log::error('Error while liking the idea: ' . $e->getMessage());
-            return redirect()->route('dashboard')->with('error', 'Error while liking the idea');
+            return redirect()->route('dashboard')
+                ->with('error', 'Error while liking the idea');
         }
 
     }
@@ -36,7 +36,8 @@ class IdeaLikeController extends Controller
         }
         catch (Exception $e) {
             Log::error('Error while unliking the idea: ' . $e->getMessage());
-            return redirect()->route('dashboard')->with('error', 'Error while unliking the idea');
+            return redirect()->route('dashboard')
+                ->with('error', 'Error while unliking the idea');
         }
     }
 }

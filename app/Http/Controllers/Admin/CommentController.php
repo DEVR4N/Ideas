@@ -19,6 +19,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail(request('comment'));
         $comment->delete();
-        return redirect()->route('admin.comments.index')->with('success', 'Comment deleted successfully');
+        return redirect()->route('admin.comments.index')
+            ->with('success', 'Comment deleted successfully');
     }
 }
