@@ -2,20 +2,20 @@
     <div class="card-body pt-3">
         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
             <li class="nav-item">
-                <a class="{{ (Route::is('dashboard')) ? 'text-white bg-primary rounded' : ''}} nav-link"
+                <a class="{{ (Route::is('dashboard')) ? 'text-white bg-dark rounded' : ''}} nav-link"
                    href="{{route('dashboard')}}">
                     <i class="fa-solid fa-house"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="{{ (Request::is('feed')) ? 'text-white bg-primary rounded' : ''}} nav-link"
+                <a class="{{ (Request::is('feed')) ? 'text-white bg-dark rounded' : ''}} nav-link"
                    href="{{url('feed')}}">
                     <i class="fa-solid fa-recycle"></i>
                     <span>Feed</span></a>
             </li>
             <li class="nav-item">
-                <a class="{{ (Request::is('terms')) ? 'text-white bg-primary rounded' : ''}} nav-link"
+                <a class="{{ (Request::is('terms')) ? 'text-white bg-dark rounded' : ''}} nav-link"
                    href="{{url('terms')}}">
                     <i class="fa-regular fa-newspaper"></i>
                     <span>Terms</span></a>
