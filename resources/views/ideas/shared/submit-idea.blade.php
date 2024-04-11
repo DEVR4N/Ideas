@@ -10,7 +10,10 @@
                 @enderror
             </div>
             <div class="">
-                <button class="btn btn-dark"> Share</button>
+                <button class="btn btn-dark">
+                    Share
+                    <i class="fa-regular fa-paper-plane"></i>
+                </button>
             </div>
         </form>
     </div>

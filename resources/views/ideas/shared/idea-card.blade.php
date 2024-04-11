@@ -14,13 +14,13 @@
                 </div>
             </div>
             <div class="d-flex">
-                <a href="{{ route('ideas.show',$idea->id) }}" class="btn btn-info btn-sm"> View </a>
+                <a href="{{ route('ideas.show',$idea->id) }}" class="btn btn-info btn-sm"> <i class="fa-regular fa-eye"></i> </a>
                 @auth()
                     @can('update', $idea)
-                        <a href="{{ route('ideas.edit',$idea->id) }}" class="btn btn-success btn-sm"> Edit </a>
+                        <a href="{{ route('ideas.edit',$idea->id) }}" class="btn btn-warning btn-sm"> <i class="fa-regular fa-pen-to-square"></i> </a>
                         <form method="POST" action="{{ route('ideas.destroy',$idea->id) }}">
                             @csrf @method('DELETE')
-                            <button class="btn btn-danger btn-sm"> X</button>
+                            <button class="btn btn-danger btn-sm"><i class="fa-solid fa-x"></i></button>
                         </form>
                     @endcan
                 @endauth
