@@ -42,7 +42,9 @@
                             <form action="{{route('admin.comments.destroy',$comment)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-x fa-lg"></i>
+                                </button>
                             </form>
 
                         </td>
