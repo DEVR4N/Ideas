@@ -34,7 +34,8 @@ class AuthController extends Controller
          */
         //Mail::to($user)->send(new WelcomeEmail($user));
 
-        return redirect()->route('dashboard')->with('success', 'User created successfully!');
+        return redirect()->route('dashboard')
+            ->with('success', 'User created successfully!');
     }
 
     public function login()
@@ -52,7 +53,8 @@ class AuthController extends Controller
         if (auth()->attempt($validated)) {
             request()->session()->regenerate();
 
-            return redirect()->route('dashboard')->with('success', 'User logged in successfully!');
+            return redirect()->route('dashboard')
+                ->with('success', 'User logged in successfully!');
         }
 
         return redirect()->route('login')->withErrors([
@@ -67,6 +69,7 @@ class AuthController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect()->route('dashboard')->with('success', 'User logged out successfully!');
+        return redirect()->route('dashboard')
+            ->with('success', 'User logged out successfully!');
     }
 }

@@ -26,9 +26,15 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->created_at->toDateString()}}</td>
                         <td class="btn-group btn-group-sm " role="group" aria-label="Basic mixed styles example">
-                            <a href="{{ route('users.show',$user) }}" class="btn btn-info btn-sm">Show</a>
-                            <a href="{{ route('users.edit',$user) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ route('users.show',$user) }}" class="btn btn-info btn-sm">
+                                <i class="fa-regular fa-eye fa-lg"></i>
+                            </a>
+                            <a href="{{ route('users.edit',$user) }}" class="btn btn-warning btn-sm">
+                                <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-x fa-lg"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

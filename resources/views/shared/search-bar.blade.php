@@ -6,7 +6,9 @@
         <form action="{{ route('dashboard') }}" method="GET">
             <input name="search" placeholder="..." class="form-control w-100" type="text"
                    value="{{request('search','')}}">
-            <button class="btn btn-dark mt-2"> Search</button>
+            <button class="btn btn-dark mt-2">
+                <i class="fas fa-search"></i> Search
+            </button>
         </form>
     </div>
 </div>

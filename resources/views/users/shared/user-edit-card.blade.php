@@ -19,7 +19,9 @@
 
             @auth
                 @if(Auth::id() === $user->id)
-                    <a href="{{route('users.show',$user->id)}}" class="btn btn-primary btn-sm ms-3"> View </a>
+                    <a href="{{route('users.show',$user->id)}}" class="btn btn-primary btn-sm ms-3">
+                        View <i class="fa-regular fa-eye fa-bounce"></i>
+                    </a>
                 @endif
             @endauth
         </div>
@@ -40,7 +42,9 @@
                 @enderror
             </div>
 
-            <input class="btn btn-success btn-sm mb-3" type="submit" value="Update">
+            <button type="submit" class="btn btn-success btn-sm mb-3" >
+                Update &nbsp; <i class="fa-solid fa-pen fa-beat"></i>
+            </button>
             @include('users.shared.user-stats')
         </div>
         </form>

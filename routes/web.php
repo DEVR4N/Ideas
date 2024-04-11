@@ -30,14 +30,6 @@ Route::get('lang/{lang}', function ($lang) {
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'show'])
-    ->middleware('auth','can:admin');
-
-Route::resource('ideas', IdeaController::class)->only(['show']);
-
-Route::resource('ideas.comments', CommentController::class)->only(['store'])
-    ->middleware('auth');
-
 Route::resource('users', UserController::class)->only(['show']);
 
 Route::resource('users', UserController::class)->only(['edit', 'update'])
@@ -54,13 +46,6 @@ Route::post('user/{user}/unfollow', [FollowerController::class, 'unfollow'])
     ->name('user.unfollow')
     ->middleware('auth');
 
-Route::post('ideas/{idea}/like', [IdeaLikeController::class, 'like'])
-    ->name('ideas.like')
-    ->middleware('auth');
-
-Route::post('ideas/{idea}/unlike', [IdeaLikeController::class, 'unlike'])
-    ->name('ideas.unlike')
-    ->middleware('auth');
 
 Route::get('/feed', FeedController::class)->name('feed')
     ->middleware('auth');
@@ -72,12 +57,26 @@ Route::get('/terms', function () {
 })->name('terms');
 
 
+// Ideas routes
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('ideas', IdeaController::class)->only(['show']);
+    Route::resource('ideas',IdeaController::class)->except(['index','create','show'])
+        ->middleware('auth','can:admin');
+    Route::resource('ideas.comments', CommentController::class)->only(['store'])
+        ->middleware('auth','can:admin');
+    Route::post('ideas/{idea}/like',[IdeaLikeController::class,'like'])->name('ideas.like');
+    Route::post('ideas/{idea}/unlike',[IdeaLikeController::class,'unlike'])->name('ideas.unlike');
+});
+
 // Admin routes
+
 Route::middleware(['auth','can:admin'])->prefix('/admin')->as('admin.')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('users', AdminUserController::class)->only('index');
     Route::resource('ideas', AdminIdeaController::class)->only('index');
     Route::resource('comments', AdminCommentController::class)->only(['index','destroy']);
 });
+
 
 

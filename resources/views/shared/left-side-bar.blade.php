@@ -4,16 +4,20 @@
             <li class="nav-item">
                 <a class="{{ (Route::is('dashboard')) ? 'text-white bg-primary rounded' : ''}} nav-link"
                    href="{{route('dashboard')}}">
-                    <span>Home</span></a>
+                    <i class="fa-solid fa-house"></i>
+                    <span>Home</span>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="{{ (Request::is('feed')) ? 'text-white bg-primary rounded' : ''}} nav-link"
                    href="{{url('feed')}}">
+                    <i class="fa-solid fa-recycle"></i>
                     <span>Feed</span></a>
             </li>
             <li class="nav-item">
                 <a class="{{ (Request::is('terms')) ? 'text-white bg-primary rounded' : ''}} nav-link"
                    href="{{url('terms')}}">
+                    <i class="fa-regular fa-newspaper"></i>
                     <span>Terms</span></a>
             </li>
 
