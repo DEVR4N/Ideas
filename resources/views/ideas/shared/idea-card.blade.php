@@ -22,7 +22,7 @@
                         <a href="{{ route('ideas.edit',$idea->id) }}" class="btn btn-warning btn-sm">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </a>
-                        <form method="POST" action="{{ route('ideas.destroy',$idea->id) }}">
+                        <form id="delete-idea" method="POST" action="{{ route('ideas.destroy',$idea->id) }}">
                             @csrf @method('DELETE')
                             <button class="btn btn-danger btn-sm">
                                 <i class="fa-solid fa-x"></i>
@@ -66,4 +66,24 @@
             @include('ideas.shared.comment-box')
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#delete-idea').submit(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure ?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).unbind('submit').submit();
+                    }
+                });
+            });
+        });
+    </script>
 </div>
