@@ -31,15 +31,39 @@
                                href="{{route('profile')}}">{{ Auth::user()->name }}</a>
                         </li>
                     <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST">
+                        <form id="logout" action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="btn btn-danger btn-sm">
                                 Logout  <i class="fa-solid fa-person-walking-arrow-right"></i>
                             </button>
+
                         </form>
                     </li>
                 @endauth
             </ul>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
+        <script>
+            $(document).ready(function () {
+                $('#logout').submit(function (e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Hey you !',
+                        text: "Are you sure you want to logout?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, logout!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $(this).unbind('submit').submit();
+                        }
+                    });
+                });
+            });
+        </script>
     </div>
 </nav>
