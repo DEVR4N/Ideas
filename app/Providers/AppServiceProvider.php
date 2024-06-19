@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -30,17 +31,17 @@ class AppServiceProvider extends ServiceProvider
         App::setLocale('tr');
 //        Cache::flush();
         // Get the top users from the cache
-        $topUsers = Cache::remember('topUsers', 3, function () {
-            return User::withCount('ideas')
-                ->orderBy('ideas_count', 'DESC')
-                ->limit(10)->get();
-        });
 
-//        Clear the cache
+        if (Schema::hasTable('users')) {
+            $topUsers = Cache::remember('topUsers', 3, function () {
+                return User::withCount('ideas')
+                    ->orderBy('ideas_count', 'DESC')
+                    ->limit(10)->get();
+            });
+            View::share('topUsers', $topUsers); // Share the top users with all views at one place
+        }
 
-//        Cache::forget('topUsers');
+//        Cache::forget('topUsers'); // Clear the cache
 
-        // Share the top users with all views at one place
-        View::share('topUsers', $topUsers);
     }
 }
