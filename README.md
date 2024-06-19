@@ -36,6 +36,7 @@ composer install
 cp .env.example .env
 ```
 
+
 5 . Generate a new application key
 ```
 php artisan key:generate
@@ -47,6 +48,7 @@ php artisan migrate
 ```
 
 ---
+
 > Note : If you want to create Admin and User by default `php artisan db:seed`
 ---
 
@@ -67,5 +69,8 @@ php artisan serve
 
 - **Bootstrap** : Bootsrap 5 and Bootswatch were used to enhance the design.
 
+## Preview
+<img src="https://github.com/DEVR4N/Ideas/assets/77250053/545abe7a-b894-40e3-95fe-4984a044f29f" alt="ideas-preview" width="500"/>
+<img src="https://github.com/DEVR4N/Ideas/assets/77250053/771c8e80-7ad3-4a2f-8817-f331e4b8d5d4" alt="ideas-preview" width="500"/>
 
 
