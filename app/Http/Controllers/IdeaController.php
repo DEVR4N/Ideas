@@ -19,7 +19,7 @@ class IdeaController extends Controller
     {
         try {
             $validated = $request->validated();
-            $validated['user_id2'] = auth()->id();
+            $validated['user_id'] = auth()->id();
             Idea::create($validated);
 
             return redirect()->route('dashboard')

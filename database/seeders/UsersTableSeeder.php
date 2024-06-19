@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
             'bio' => 'Jack',
-            'image' => 'https://i.pravatar.cc/100',
+            'image' => 'https://i.pravatar.cc/150',
             'is_admin' => false,
         ]);
     }
