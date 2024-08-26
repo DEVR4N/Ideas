@@ -42,9 +42,9 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-6 . The following code will create the necessary tables.
+6 . The following code will create the necessary tables and seeders.
 ```
-php artisan migrate
+php artisan migrate:fresh --seed
 ```
 
 ---
