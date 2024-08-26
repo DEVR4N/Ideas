@@ -40,13 +40,12 @@ Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
 
-//comment edit and update method need fix
 // Ideas routes
 Route::middleware(['auth'])->group(function () {
     Route::resource('ideas', IdeaController::class)->only(['show']);
     Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'show'])->middleware('auth', 'can:admin');
-    Route::resource('ideas.comments', CommentController::class)->only(['store'])->middleware('auth', 'can:admin');
-    Route::resource('ideas.comments', CommentController::class)->only(['edit', 'update', 'destroy'])->middleware('auth');
+//    Route::resource('ideas.comments', CommentController::class)->only(['store'])->middleware('auth', 'can:admin');
+    Route::resource('ideas.comments', CommentController::class)->only(['store', 'edit', 'update', 'destroy'])->middleware('auth');
     Route::post('ideas/{idea}/like', [IdeaLikeController::class, 'like'])->name('ideas.like');
     Route::post('ideas/{idea}/unlike', [IdeaLikeController::class, 'unlike'])->name('ideas.unlike');
 });

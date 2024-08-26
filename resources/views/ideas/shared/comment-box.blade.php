@@ -27,20 +27,14 @@
                     </div>
 
                     <div class="d-flex flex-fill">
-                        <p class="fs-6 mt-3 fw-light"> {{ $comment->content }} </p>
-
-                        <div class="d-flex flex-fill justify-content-end">
-                            @auth()
-                                <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn text-danger"><i class="fa fa-trash"></i></button>
-                                </form>
-                                <form action="{{ route('ideas.comments.edit', [$comment->idea_id, $comment->id]) }}" method="GET" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn text-info"><i class="fa fa-pencil"></i></button>
-                                </form>
-                            @endauth()
+                        <div class="d-flex flex-fill">
+                            @if($editing ?? false)
+                                @include('components.update-comment-form', ['idea' => $idea, 'comment' => $comment])
+                            @else
+                                <p class="fs-6 mt-3 fw-light">{{ $comment->content }}</p>
+{{--                            code fix need --}}
+{{--                                @include('ideas.components.comment-action-buttons', ['idea' => $idea, 'comment' => $comment])--}}
+                            @endif
                         </div>
 
                     </div>

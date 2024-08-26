@@ -19,13 +19,18 @@ class CommentController extends Controller
             ->with('success', 'Comment created successfully!');
     }
 
-    // edit and update methods need fix
-    public function edit(Comment $comment)
+    public function isIdeaOwner(Idea $idea)
     {
-        $this->authorize('update', $comment);
-        $editing = true;
-        return view('comments.edit', compact('comment', 'editing'));
+        return auth()->id() === $idea->user_id;
+    }
 
+    public function edit(Idea $idea, Comment $comment)
+    {
+        if (!$this->isIdeaOwner($idea) || !$this->authorize('update', $comment)) {
+            abort(404);
+        }
+        $editing = true;
+        return view('comments.show', compact('comment', 'editing'));
     }
 
     public function update(CreateCommentRequest $request, Comment $comment)
@@ -37,7 +42,7 @@ class CommentController extends Controller
             ->with('success', 'Comment updated successfully!');
     }
 
-    public function destroy(Comment $comment)
+    public function destroy(Idea $idea, Comment $comment)
     {
         $this->authorize('delete', $comment);
         $comment->delete();
