@@ -85,6 +85,9 @@ class User extends Authenticatable
     public function getImageUrl()
     {
         if ($this->image) {
+            if (filter_var($this->image, FILTER_VALIDATE_URL)) {
+                return $this->image;
+            }
             return url('storage/' . $this->image);
         }
 

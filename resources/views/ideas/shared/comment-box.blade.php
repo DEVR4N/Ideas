@@ -31,9 +31,15 @@
 
                         <div class="d-flex flex-fill justify-content-end">
                             @auth()
-                                @csrf
-                                <button type="submit" class="btn text-danger"><i class="fa fa-trash"></i></button>
-                                <button type="submit" class="btn text-info"><i class="fa fa-pencil"></i></button>
+                                <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn text-danger"><i class="fa fa-trash"></i></button>
+                                </form>
+                                <form action="{{ route('ideas.comments.edit', [$comment->idea_id, $comment->id]) }}" method="GET" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn text-info"><i class="fa fa-pencil"></i></button>
+                                </form>
                             @endauth()
                         </div>
 
@@ -48,3 +54,25 @@
             <p class="fs-6 fw-light text-muted text-center">No comments yet</p>
         @endforelse
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('form[action*="comments.destroy"]').forEach(function (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
