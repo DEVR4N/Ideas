@@ -29,11 +29,10 @@
                     <div class="d-flex flex-fill">
                         <div class="d-flex flex-fill">
                             @if($editing ?? false)
-                                @include('components.update-comment-form', ['idea' => $idea, 'comment' => $comment])
+                                @include('ideas.shared.components.update-comment-form', ['idea' => $idea, 'comment' => $comment])
                             @else
                                 <p class="fs-6 mt-3 fw-light">{{ $comment->content }}</p>
-{{--                            code fix need --}}
-{{--                                @include('ideas.components.comment-action-buttons', ['idea' => $idea, 'comment' => $comment])--}}
+                                @include('ideas.shared.components.comment-action-buttons', ['idea' => $idea, 'comment' => $comment])
                             @endif
                         </div>
 

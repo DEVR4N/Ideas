@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 //use Illuminate\Support\Facades\Gate;
+use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
 
@@ -15,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
     //Useable for defining policies classes
     protected $policies = [
 //        Idea::class => 'App\Policies\IdeaPolicy',
+        Comment::class => 'App\Policies\CommentPolicy',
     ];
 
 

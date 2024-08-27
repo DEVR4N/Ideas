@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateCommentRequest;
 use App\Models\Idea;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Log;
 
 class CommentController extends Controller
 {
@@ -19,32 +20,23 @@ class CommentController extends Controller
             ->with('success', 'Comment created successfully!');
     }
 
-    public function isIdeaOwner(Idea $idea)
-    {
-        return auth()->id() === $idea->user_id;
-    }
-
-    public function edit(Idea $idea, Comment $comment)
-    {
-        if (!$this->isIdeaOwner($idea) || !$this->authorize('update', $comment)) {
-            abort(404);
-        }
-        $editing = true;
-        return view('comments.show', compact('comment', 'editing'));
-    }
-
     public function update(CreateCommentRequest $request, Comment $comment)
     {
-        $this->authorize('update', $comment);
-        $validated = $request->validated();
-        $comment->update($validated);
-        return redirect()->route('ideas.show', $comment->idea_id)
-            ->with('success', 'Comment updated successfully!');
+        try {
+            $this->authorize('update', $comment);
+            $validated = $request->validated();
+            $comment->update($validated);
+            return redirect()->route('ideas.show', $comment->idea_id)
+                ->with('success', 'Comment updated successfully!');
+        } catch (\Exception $e) {
+            Log::error('An error occurred while updating the comment! : ' . $e->getMessage());
+            return back()->withErrors(['error' => 'An error occurred while updating the comment!']);
+        }
     }
 
     public function destroy(Idea $idea, Comment $comment)
     {
-        $this->authorize('delete', $comment);
+        $this->authorize('delete', [$comment, $idea]);
         $comment->delete();
         return back()->with('success', 'Comment deleted successfully!');
     }

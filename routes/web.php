@@ -44,8 +44,7 @@ Route::get('/terms', function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('ideas', IdeaController::class)->only(['show']);
     Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'show'])->middleware('auth', 'can:admin');
-//    Route::resource('ideas.comments', CommentController::class)->only(['store'])->middleware('auth', 'can:admin');
-    Route::resource('ideas.comments', CommentController::class)->only(['store', 'edit', 'update', 'destroy'])->middleware('auth');
+    Route::resource('ideas.comments', CommentController::class)->only(['store', 'update', 'destroy'])->middleware('auth');
     Route::post('ideas/{idea}/like', [IdeaLikeController::class, 'like'])->name('ideas.like');
     Route::post('ideas/{idea}/unlike', [IdeaLikeController::class, 'unlike'])->name('ideas.unlike');
 });
