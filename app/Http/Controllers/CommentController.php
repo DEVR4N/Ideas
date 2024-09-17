@@ -5,39 +5,47 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateCommentRequest;
 use App\Models\Idea;
 use App\Models\Comment;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(CreateCommentRequest $request, Idea $idea)
-    {
+    public function store(CreateCommentRequest $request,Idea $idea) {
         $validated = $request->validated();
         $validated['user_id'] = auth()->id();
         $validated['idea_id'] = $idea->id;
         Comment::create($validated);
 
-        return redirect()->route('ideas.show', $idea->id)
-            ->with('success', 'Comment created successfully!');
+        return redirect()->route('ideas.show',$idea->id)
+            ->with('success','Comment created successfully!');
     }
 
-    public function update(CreateCommentRequest $request, Comment $comment)
+
+    //code fix needed
+    public function edit($id)
     {
-        try {
-            $this->authorize('update', $comment);
-            $validated = $request->validated();
-            $comment->update($validated);
-            return redirect()->route('ideas.show', $comment->idea_id)
-                ->with('success', 'Comment updated successfully!');
-        } catch (\Exception $e) {
-            Log::error('An error occurred while updating the comment! : ' . $e->getMessage());
-            return back()->withErrors(['error' => 'An error occurred while updating the comment!']);
-        }
+        $comment = Comment::find($id);
+        return view('comments.edit', compact('comment'));
     }
 
-    public function destroy(Idea $idea, Comment $comment)
+    public function update(Request $request, $id)
     {
-        $this->authorize('delete', [$comment, $idea]);
+        $request->validate([
+            'content' => 'required',
+        ]);
+
+        $comment = Comment::find($id);
+        $comment->content = $request->get('content');
+        $comment->save();
+
+        return redirect()->route('ideas.show', $comment->idea_id)->with('success', 'Comment updated successfully');
+    }
+
+
+    public function destroy($id)
+    {
+        $comment = Comment::find($id);
         $comment->delete();
-        return back()->with('success', 'Comment deleted successfully!');
+
+        return back()->with('success', 'Comment deleted successfully');
     }
 }
